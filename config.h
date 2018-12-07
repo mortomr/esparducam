@@ -22,13 +22,16 @@
  * THE SOFTWARE.
  */
 
-#ifndef _TIMEUTILS_H_
-#define _TIMEUTILS_H_
 
-#include <FreeRTOS.h>
-#include <task.h>
+//#define CONFIG_NO_WIFI // Skip wifi
+//#define CONFIG_NO_PIR  // Skip PIR task
 
-#define delay_ms(t) vTaskDelay((t) / portTICK_PERIOD_MS)
-#define systime_ms() (xTaskGetTickCount() * portTICK_PERIOD_MS)
+#define CONFIG_TARGET_ESPARDUCAM
+//#define CONFIG_TARGET_ESPARDUCAM_MINI
 
-#endif // _TIMEUTILS_H_
+#define ARDUCAM_nPWR  (15) // Camera power enable
+
+#ifdef CONFIG_TARGET_ESPARDUCAM_MINI
+ #define LED_nPWR      (16) // LED enable (0 lights the LED)
+ #define USR_BUTTON     (5) // User button
+#endif // CONFIG_TARGET_ESPARDUCAM_MINI
